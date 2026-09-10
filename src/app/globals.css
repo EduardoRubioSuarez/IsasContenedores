@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  SISTEMA VISUAL "BLUEPRINT DE CONTENEDOR" (inspirado en el logotipo)
+  - Esquinas rectas por defecto (radius 0). Nada de tarjetas redondeadas.
+  - Acentos angulares: marcos de hilo dorado, esquinas recortadas a 45 grados,
+    lineas en perspectiva que convergen y bandas de corrugado vertical.
+  - Dorado ocre solo para lineas y acentos, nunca como relleno de fondo amplio.
+*/
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-light-bg text-dark-base font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-gold-primary/25 text-dark-base;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold-dark ring-offset-2 ring-offset-light-bg;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12;
+  }
+
+  .section {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+}
+
+@layer utilities {
+  /* Banda de corrugado (panel frontal del contenedor) */
+  .deco-corrugated {
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(196, 152, 70, 0.22) 0 1px,
+      transparent 1px 12px
+    );
+  }
+
+  .deco-corrugated-strong {
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(196, 152, 70, 0.4) 0 2px,
+      transparent 2px 14px
+    );
+  }
+
+  /* Reticula tecnica sutil (planos) */
+  .deco-grid {
+    background-image:
+      linear-gradient(rgba(196, 152, 70, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(196, 152, 70, 0.1) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* Esquina recortada a 45 grados (arriba-derecha y abajo-izquierda),
+     eco de la perspectiva del contenedor del logo */
+  .clip-corner {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 18px) 0,
+      100% 18px,
+      100% 100%,
+      18px 100%,
+      0 calc(100% - 18px)
+    );
+  }
+
+  .clip-corner-sm {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px)
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

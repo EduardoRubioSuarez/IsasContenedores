@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#111419" />
+  <rect x="10" y="10" width="44" height="44" rx="8" fill="none" stroke="#C49846" stroke-width="2" />
+  <text x="32" y="41" text-anchor="middle" font-family="Outfit, Montserrat, system-ui, sans-serif" font-size="26" font-weight="700" fill="#C49846">iA</text>
+</svg>
