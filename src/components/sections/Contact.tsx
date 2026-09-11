@@ -4,7 +4,15 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 
-const details = [
+type ContactDetail = {
+  icon: typeof Phone;
+  label: string;
+  value: string;
+  href: string;
+  external?: boolean;
+};
+
+const details: ContactDetail[] = [
   {
     icon: Phone,
     label: "Teléfono",
@@ -18,12 +26,17 @@ const details = [
     href: whatsappUrl,
     external: true,
   },
-  {
-    icon: Mail,
-    label: "Correo",
-    value: site.email,
-    href: `mailto:${site.email}`,
-  },
+  // El correo solo se muestra cuando hay uno real configurado en content.ts.
+  ...(site.email
+    ? [
+        {
+          icon: Mail,
+          label: "Correo",
+          value: site.email,
+          href: `mailto:${site.email}`,
+        },
+      ]
+    : []),
 ];
 
 export default function Contact() {

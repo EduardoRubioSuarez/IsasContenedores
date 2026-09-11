@@ -21,20 +21,22 @@ export default function Footer() {
           />
           <p className="mt-5 text-sm leading-relaxed text-slate-400">{footer.tagline}</p>
 
-          <div className="mt-6 flex gap-3">
-            {site.social.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                className="inline-flex h-9 w-9 items-center justify-center border border-border-line text-slate-300 transition-colors hover:border-gold-primary hover:text-white"
-              >
-                <Icon name={s.icon} className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
+          {site.social.length > 0 ? (
+            <div className="mt-6 flex gap-3">
+              {site.social.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="inline-flex h-9 w-9 items-center justify-center border border-border-line text-slate-300 transition-colors hover:border-gold-primary hover:text-white"
+                >
+                  <Icon name={s.icon} className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         <nav aria-label="Enlaces rápidos">
@@ -75,14 +77,16 @@ export default function Footer() {
                 WhatsApp
               </a>
             </li>
-            <li>
-              <a
-                href={`mailto:${site.email}`}
-                className="break-all transition-colors hover:text-gold-light"
-              >
-                {site.email}
-              </a>
-            </li>
+            {site.email ? (
+              <li>
+                <a
+                  href={`mailto:${site.email}`}
+                  className="break-all transition-colors hover:text-gold-light"
+                >
+                  {site.email}
+                </a>
+              </li>
+            ) : null}
             <li className="text-slate-400">
               {site.addressLine}
               <br />

@@ -29,21 +29,17 @@ export type IconName =
   | "linkedin";
 
 /* -------------------------------------------------------------------------- */
-/*  Helpers                                                                    */
-/* -------------------------------------------------------------------------- */
-
-/** Construye una URL de Unsplash con parámetros de optimización. */
-const img = (id: string, w = 1400): string =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
-
-/* -------------------------------------------------------------------------- */
 /*  Datos de la empresa                                                        */
 /* -------------------------------------------------------------------------- */
 
 export const site = {
   name: "Isas Contenedores",
+  // Dominio público del sitio. Actualízalo cuando se publique en el dominio
+  // definitivo: de esto dependen las URLs canónicas, el sitemap y las tarjetas
+  // que se generan al compartir en redes.
+  url: "https://isascontenedores.mx",
   logo: {
-    src: "/isas-contenedores-logo.png",
+    src: "/isas-contenedores-logo.webp",
     alt: "Isas Contenedores",
     width: 819,
     height: 350,
@@ -57,9 +53,34 @@ export const site = {
   whatsapp: "526121177002", // formato internacional, sin "+" ni espacios
   whatsappMessage:
     "Hola, vengo del sitio web y quiero cotizar un proyecto con contenedores.",
-  email: "contacto@isascontenedores.mx", // TODO: correo real
+  // TODO: correo real. Mientras esté vacío no se muestra en el sitio ni en los
+  // datos estructurados (mejor sin correo que con uno que rebota).
+  email: "",
+
   addressLine: "C. Toronja 561, Indeco, Donceles 28",
   addressCity: "23070 La Paz, B.C.S., México",
+  // Dirección desglosada para los datos estructurados (schema.org PostalAddress).
+  address: {
+    street: "C. Toronja 561, Indeco, Donceles 28",
+    locality: "La Paz",
+    region: "Baja California Sur",
+    postalCode: "23070",
+    country: "MX",
+  },
+  // Coordenadas del patio / showroom (las mismas que usa el mapa embebido).
+  geo: { lat: 24.12674, lng: -110.319677 },
+  // Zona de servicio: La Paz y toda la península de Baja California
+  // (estados de Baja California Sur y Baja California).
+  areaServed: [
+    "La Paz",
+    "Los Cabos",
+    "San José del Cabo",
+    "Cabo San Lucas",
+    "Ciudad Constitución",
+    "Loreto",
+    "Baja California Sur",
+    "Baja California",
+  ],
 
   // Ubicación real (Google Maps: pin "ISAS DIGITAL", La Paz)
   mapLink: "https://maps.app.goo.gl/z27CDvrZcaFbuyVn6",
@@ -71,11 +92,44 @@ export const site = {
     { days: "Sábado y domingo", time: "Cerrado" },
   ],
 
-  social: [
-    { label: "Instagram", href: "https://instagram.com", icon: "instagram" as IconName },
-    { label: "Facebook", href: "https://facebook.com", icon: "facebook" as IconName },
-    { label: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" as IconName },
+  // TODO: redes reales. Deja la lista vacía hasta tener los perfiles; así no se
+  // enlazan páginas genéricas ni en el footer ni en los datos estructurados.
+  social: [] as { label: string; href: string; icon: IconName }[],
+};
+
+/* -------------------------------------------------------------------------- */
+/*  SEO / metadatos                                                            */
+/* -------------------------------------------------------------------------- */
+
+export const seo = {
+  /** <title> del inicio. Va con keyword + zona primero y marca al final. */
+  title:
+    "Casas y oficinas de contenedores en Baja California | Isas Contenedores",
+  /** Meta description del inicio (~155-165 caracteres). */
+  description:
+    "Casas, oficinas, locales y bodegas en contenedores marítimos en La Paz y toda Baja California. Calidad de obra formal en semanas, con cálculo estructural para viento y sismo.",
+  keywords: [
+    "casas de contenedores",
+    "casas contenedor Baja California",
+    "casas contenedor La Paz",
+    "casas container México",
+    "oficinas de contenedores",
+    "módulos comerciales de contenedor",
+    "bodegas de contenedor",
+    "tiny house México",
+    "construcción modular",
+    "arquitectura con contenedores marítimos",
+    "casas contenedor Los Cabos",
   ],
+  /**
+   * Imagen para las tarjetas al compartir en redes / WhatsApp (Open Graph +
+   * Twitter). 1200x630. Regenerable desde scripts/ si cambia la foto o el texto.
+   */
+  ogImage: "/og-image.jpg",
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogImageAlt:
+    "Vivienda de dos contenedores marítimos apilados al atardecer, con el logotipo de Isas Contenedores",
 };
 
 export const whatsappUrl = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(
@@ -102,13 +156,14 @@ export const navCta = { label: "Cotizar Proyecto", href: "#contacto" };
 /* -------------------------------------------------------------------------- */
 
 export const hero = {
+  eyebrow: "Arquitectura en contenedores marítimos · Baja California",
   title: "Espacios sin límites.",
   subtitle:
-    "Transformamos contenedores marítimos en arquitectura habitable y comercial: rápida de construir, resistente y sustentable.",
+    "Transformamos contenedores marítimos en arquitectura habitable y comercial —rápida de construir, resistente y sustentable— en La Paz y toda la península de Baja California.",
   primaryCta: { label: "Ver Proyectos", href: "#proyectos" },
   secondaryCta: { label: "Cotizar por WhatsApp", href: whatsappUrl },
   image: {
-    src: "/proyectos/hero.png",
+    src: "/proyectos/hero.webp",
     alt: "Vivienda de dos contenedores marítimos apilados con ventanales de piso a techo, terraza de madera y vista al mar al atardecer",
   },
 };
@@ -194,7 +249,7 @@ export const projectShowcase: {
       "Acabados a elegir: tabla roca, madera, PVC o panel cementicio",
       "Ventanas y puertas con marco de refuerzo, sellos y remates",
     ],
-    image: "/proyectos/casa-modular.png",
+    image: "/proyectos/casa-modular.webp",
     alt: "Casa modular de contenedor de 40 pies con fachada de acero corrugado verde, terraza de madera y ventanales corredizos",
   },
   {
@@ -210,7 +265,7 @@ export const projectShowcase: {
       "Plafón para ocultar instalaciones y alojar iluminación",
       "Puerta de seguridad y ventanas con marco reforzado",
     ],
-    image: "/proyectos/oficina-ejecutiva.png",
+    image: "/proyectos/oficina-ejecutiva.webp",
     alt: "Interior de oficina en contenedor habilitado: escritorios, plafón con luminarias, minisplit, piso de concreto pulido y ventana amplia",
   },
   {
@@ -226,7 +281,7 @@ export const projectShowcase: {
       "Instalación eléctrica y de gas dimensionada para el equipo de cocina",
       "Superficies lavables, piso antiderrapante y manejo de residuos",
     ],
-    image: "/proyectos/modulo-comercial.png",
+    image: "/proyectos/modulo-comercial.webp",
     alt: "Cafetería en contenedor negro con pared abierta, marquesina abatible, barra de madera y bancos altos al atardecer",
   },
   {
@@ -242,7 +297,7 @@ export const projectShowcase: {
       "Acabado industrial o aislamiento según lo almacenado",
       "Refuerzo de piso para estantería pesada o carga concentrada",
     ],
-    image: "/proyectos/bodega-industrial.png",
+    image: "/proyectos/bodega-industrial.webp",
     alt: "Bodega en contenedor de 20 pies gris sobre dados de concreto, con puertas de carga abiertas mostrando estantería metálica y puerta peatonal lateral",
   },
 ];
@@ -265,14 +320,15 @@ export const about = {
     "Diseño 100% personalizado, sin catálogo rígido",
   ],
   image: {
-    src: img("1486406146926-c627a92ad1ab", 1200),
+    src: "/proyectos/oficina-ejecutiva.webp",
     alt: "Fachada de edificio modular contemporáneo de líneas rectas y acabado sobrio",
   },
-  // TODO: ajustar a cifras reales de la empresa
+  // Cifras verificables, sin inflar. Nota: la sección "Nosotros" no se renderiza
+  // hoy en la landing; si se agrega, ajusta estos labels al alcance real.
   stats: [
-    { prefix: "+", value: 120, suffix: "", label: "módulos entregados" },
-    { prefix: "", value: 9, suffix: " años", label: "habilitando contenedores" },
-    { prefix: "", value: 100, suffix: "%", label: "proyectos con planos ejecutivos" },
+    { prefix: "", value: 100, suffix: "%", label: "proyectos con planos ejecutivos y memoria de cálculo" },
+    { prefix: "", value: 4, suffix: "", label: "tipologías: vivienda, oficina, comercio y bodega" },
+    { prefix: "", value: 2, suffix: "", label: "estados de cobertura en la península" },
   ],
 };
 
@@ -333,7 +389,7 @@ export const contactSection = {
   secondaryCta: { label: "Llamar ahora", href: telUrl },
   location: {
     title: "Patio de maniobras y showroom",
-    note: "",
+    note: "Cobertura de proyectos en La Paz, Los Cabos y toda la península de Baja California.",
   },
 };
 

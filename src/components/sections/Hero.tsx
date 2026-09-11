@@ -83,9 +83,16 @@ export default function Hero() {
             className="block h-[3px] w-16 origin-left bg-gold-primary"
           />
 
+          <motion.p
+            variants={item}
+            className="mt-4 text-[0.72rem] font-semibold uppercase tracking-eyebrow text-gold-light"
+          >
+            {hero.eyebrow}
+          </motion.p>
+
           <motion.h1
             variants={item}
-            className="mt-6 font-display text-[2.9rem] font-semibold leading-[1] tracking-tight text-white sm:text-6xl lg:text-[4.6rem]"
+            className="mt-3 font-display text-[2.9rem] font-semibold leading-[1] tracking-tight text-white sm:text-6xl lg:text-[4.6rem]"
           >
             {hero.title}
           </motion.h1>
