@@ -26,7 +26,8 @@ export type IconName =
   | "clock"
   | "instagram"
   | "facebook"
-  | "linkedin";
+  | "linkedin"
+  | "users";
 
 /* -------------------------------------------------------------------------- */
 /*  Datos de la empresa                                                        */
@@ -143,6 +144,7 @@ export const telUrl = `tel:${site.phoneHref}`;
 /* -------------------------------------------------------------------------- */
 
 export const navLinks = [
+  { label: "Financiamiento", href: "#financiamiento" },
   { label: "Ventajas", href: "#ventajas" },
   { label: "Servicios", href: "#servicios" },
   { label: "FAQ", href: "#faq" },
@@ -159,7 +161,7 @@ export const hero = {
   eyebrow: "Arquitectura en contenedores marítimos · Baja California",
   title: "Espacios sin límites.",
   subtitle:
-    "Transformamos contenedores marítimos en arquitectura habitable y comercial —rápida de construir, resistente y sustentable— en La Paz y toda la península de Baja California.",
+    "Transformamos contenedores marítimos en arquitectura habitable y comercial —rápida de construir, resistente y sustentable— en La Paz y toda la península de Baja California/Sur.",
   primaryCta: { label: "Ver Proyectos", href: "#proyectos" },
   secondaryCta: { label: "Cotizar por WhatsApp", href: whatsappUrl },
   image: {
@@ -223,7 +225,7 @@ export const showcaseSection = {
   title: "Un contenedor, muchas formas de habitarlo",
   description:
     "Elige una tipología y mira cómo se ve, qué contenedor usa y qué incluye. El proyecto final se adapta a tu terreno y a tu marca.",
-  cta: "Cotizar este tipo",
+  cta: "Cotizar",
 };
 
 export const projectShowcase: {
@@ -233,14 +235,13 @@ export const projectShowcase: {
   container: string;
   description: string;
   specs: string[];
-  image: string;
-  alt: string;
+  images: { src: string; alt: string; label: string }[];
 }[] = [
   {
     tab: "Casa modular",
     icon: "home",
     title: "Casas modulares y tiny houses",
-    container: "40ft High Cube",
+    container: "40ft o 20ft High Cube",
     description:
       "Integra recámara, cocina, baño y sala en un módulo, o combina dos o más contenedores para más amplitud. Se puede dejar preparado para crecer después.",
     specs: [
@@ -249,8 +250,18 @@ export const projectShowcase: {
       "Acabados a elegir: tabla roca, madera, PVC o panel cementicio",
       "Ventanas y puertas con marco de refuerzo, sellos y remates",
     ],
-    image: "/proyectos/casa-modular.webp",
-    alt: "Casa modular de contenedor de 40 pies con fachada de acero corrugado verde, terraza de madera y ventanales corredizos",
+    images: [
+      {
+        src: "/proyectos/casa-modular.webp",
+        alt: "Casa modular de contenedor de 40 pies con fachada de acero corrugado verde, terraza de madera y ventanales corredizos",
+        label: "Contenedor 40 pies",
+      },
+      {
+        src: "/proyectos/casa-modular-20-pies.webp",
+        alt: "Casa modular de contenedor de 20 pies con acabado gris, terraza de madera, ventanal panorámico y puerta corrediza de cristal",
+        label: "Contenedor 20 pies",
+      },
+    ],
   },
   {
     tab: "Oficina ejecutiva",
@@ -265,8 +276,13 @@ export const projectShowcase: {
       "Plafón para ocultar instalaciones y alojar iluminación",
       "Puerta de seguridad y ventanas con marco reforzado",
     ],
-    image: "/proyectos/oficina-ejecutiva.webp",
-    alt: "Interior de oficina en contenedor habilitado: escritorios, plafón con luminarias, minisplit, piso de concreto pulido y ventana amplia",
+    images: [
+      {
+        src: "/proyectos/oficina-ejecutiva.webp",
+        alt: "Interior de oficina en contenedor habilitado: escritorios, plafón con luminarias, minisplit, piso de concreto pulido y ventana amplia",
+        label: "",
+      },
+    ],
   },
   {
     tab: "Módulo comercial",
@@ -281,8 +297,13 @@ export const projectShowcase: {
       "Instalación eléctrica y de gas dimensionada para el equipo de cocina",
       "Superficies lavables, piso antiderrapante y manejo de residuos",
     ],
-    image: "/proyectos/modulo-comercial.webp",
-    alt: "Cafetería en contenedor negro con pared abierta, marquesina abatible, barra de madera y bancos altos al atardecer",
+    images: [
+      {
+        src: "/proyectos/modulo-comercial.webp",
+        alt: "Cafetería en contenedor negro con pared abierta, marquesina abatible, barra de madera y bancos altos al atardecer",
+        label: "",
+      },
+    ],
   },
   {
     tab: "Bodega industrial",
@@ -297,10 +318,49 @@ export const projectShowcase: {
       "Acabado industrial o aislamiento según lo almacenado",
       "Refuerzo de piso para estantería pesada o carga concentrada",
     ],
-    image: "/proyectos/bodega-industrial.webp",
-    alt: "Bodega en contenedor de 20 pies gris sobre dados de concreto, con puertas de carga abiertas mostrando estantería metálica y puerta peatonal lateral",
+    images: [
+      {
+        src: "/proyectos/bodega-industrial.webp",
+        alt: "Bodega en contenedor de 20 pies gris sobre dados de concreto, con puertas de carga abiertas mostrando estantería metálica y puerta peatonal lateral",
+        label: "",
+      },
+    ],
   },
 ];
+
+/* -------------------------------------------------------------------------- */
+/*  Financiamiento (promoción)                                                 */
+/* -------------------------------------------------------------------------- */
+
+export const financing = {
+  title: "FINANCIAMIENTO A 8 MESES",
+  description: "Aparta tu espacio hoy y paga cómodo mientras construimos tu proyecto.",
+
+  totalLabel: "Valor total del financiamiento",
+  total: "$240,000",
+  totalNote: "MXN",
+
+  paymentsLabel: "Pago mensual de",
+  paymentAmount: "$20,000",
+
+  downPaymentLabel: "Enganche para apartar tu espacio",
+  downPayment: "$80,000",
+
+  firstPaymentNote: "El primer pago arranca el 15 de octubre de 2026.",
+
+  highlights: [
+    { icon: "zap" as IconName, text: "Sin intereses" },
+    { icon: "shield" as IconName, text: "No dejas garantía: solo contrato y pagarés" },
+    { icon: "home" as IconName, text: "Aplica para casa básica, almacén y oficina" },
+  ],
+
+  urgencyPrefix: "Solo",
+  urgencyHighlight: "10 personas",
+  urgencyNote: "No te quedes sin lugar",
+
+  cta: { label: "Más información", href: "/Financiamiento-Isas-Contenedores.pdf" },
+  pdfFileName: "Financiamiento-Isas-Contenedores.pdf",
+};
 
 /* -------------------------------------------------------------------------- */
 /*  Nosotros                                                                   */
@@ -385,7 +445,7 @@ export const contactSection = {
   title: "Hablemos de tu proyecto",
   description:
     "Escríbenos por WhatsApp o llámanos. Te respondemos con una propuesta de precio cerrado y tiempo de entrega estimado.",
-  primaryCta: { label: "Escribir por WhatsApp", href: whatsappUrl },
+  primaryCta: { label: "Escríbenos tus dudas", href: whatsappUrl },
   secondaryCta: { label: "Llamar ahora", href: telUrl },
   location: {
     title: "Patio de maniobras y showroom",

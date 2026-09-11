@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 
 type Variant = "primary" | "outline" | "outlineLight";
-type Size = "md" | "lg";
+type Size = "md" | "lg" | "xl";
 
 // Botones angulares: esquinas rectas + recorte a 45 grados en dos vértices.
 const base =
@@ -14,6 +14,7 @@ const base =
 const sizes: Record<Size, string> = {
   md: "px-5 py-2.5 text-[0.8rem]",
   lg: "px-7 py-3.5 text-[0.8rem] sm:text-sm",
+  xl: "px-9 py-4 text-sm sm:px-11 sm:py-5 sm:text-base",
 };
 
 const variants: Record<Variant, string> = {
@@ -36,6 +37,8 @@ type ButtonProps = {
   disabled?: boolean;
   onClick?: () => void;
   "aria-label"?: string;
+  /** Fuerza descarga nativa (bypassa el routing de next/link). `true` o un nombre de archivo. */
+  download?: boolean | string;
 };
 
 /**
@@ -54,6 +57,7 @@ export default function Button({
   disabled,
   onClick,
   "aria-label": ariaLabel,
+  download,
 }: ButtonProps) {
   const classes = `${base} ${sizes[size]} ${variants[variant]} ${className}`.trim();
 
@@ -72,7 +76,8 @@ export default function Button({
 
   if (href) {
     const isExternal = href.startsWith("http");
-    const isProtocol = isExternal || href.startsWith("tel:") || href.startsWith("mailto:");
+    const isProtocol =
+      isExternal || href.startsWith("tel:") || href.startsWith("mailto:") || Boolean(download);
 
     if (isProtocol) {
       return (
@@ -83,6 +88,7 @@ export default function Button({
           className={classes}
           aria-label={ariaLabel}
           onClick={onClick}
+          download={download}
         >
           {content}
         </a>

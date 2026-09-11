@@ -75,19 +75,26 @@ export default function Navbar() {
         </Link>
 
         <ul className="hidden items-center gap-8 lg:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className={`group relative text-[0.82rem] font-semibold uppercase tracking-wide transition-colors ${
-                  onDark ? "text-white/80 hover:text-white" : "text-slate-muted hover:text-dark-base"
-                }`}
-              >
-                {link.label}
-                <span className="absolute -bottom-1.5 left-0 h-[2px] w-0 bg-gold-primary transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isFinancing = link.href === "#financiamiento";
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`group relative text-[0.82rem] font-semibold uppercase tracking-wide transition-colors ${
+                    isFinancing
+                      ? "text-gold-primary hover:text-gold-light"
+                      : onDark
+                        ? "text-white/80 hover:text-white"
+                        : "text-slate-muted hover:text-dark-base"
+                  }`}
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1.5 left-0 h-[2px] w-0 bg-gold-primary transition-all duration-300 group-hover:w-full" />
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="hidden lg:block">
@@ -122,22 +129,27 @@ export default function Navbar() {
             className="overflow-hidden border-t border-border-light bg-light-bg lg:hidden"
           >
             <ul className="shell flex flex-col gap-1 py-4">
-              {navLinks.map((link, i) => (
-                <motion.li
-                  key={link.href}
-                  initial={reduceMotion ? false : { opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: 0.04 * i, ease: EASE }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="block border-l-2 border-transparent px-3 py-3 text-sm font-semibold uppercase tracking-wide text-dark-base transition-colors hover:border-gold-primary hover:bg-white"
+              {navLinks.map((link, i) => {
+                const isFinancing = link.href === "#financiamiento";
+                return (
+                  <motion.li
+                    key={link.href}
+                    initial={reduceMotion ? false : { opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.04 * i, ease: EASE }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.li>
-              ))}
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={`block border-l-2 border-transparent px-3 py-3 text-sm font-semibold uppercase tracking-wide transition-colors hover:border-gold-primary hover:bg-white ${
+                        isFinancing ? "text-gold-dark" : "text-dark-base"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.li>
+                );
+              })}
               <li className="mt-3 px-3">
                 <Button
                   href={navCta.href}

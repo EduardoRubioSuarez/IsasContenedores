@@ -13,8 +13,15 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function Projects() {
   const [active, setActive] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
   const reduce = useReducedMotion();
   const item = projectShowcase[active];
+  const activeImage = item.images[imageIndex] ?? item.images[0];
+
+  function selectTab(index: number) {
+    setActive(index);
+    setImageIndex(0);
+  }
 
   return (
     <section id="servicios" className="section relative overflow-hidden bg-dark-surface">
@@ -46,7 +53,7 @@ export default function Projects() {
                 type="button"
                 role="tab"
                 aria-selected={sel}
-                onClick={() => setActive(i)}
+                onClick={() => selectTab(i)}
                 className={`flex w-full items-center justify-center gap-2 px-4 py-2.5 text-[0.78rem] font-semibold uppercase tracking-wide transition-colors sm:w-auto sm:justify-start ${
                   sel
                     ? "bg-gold-primary text-dark-base"
@@ -62,26 +69,53 @@ export default function Projects() {
 
         {/* Contenido: imagen + ficha, formato tipo "Nosotros" */}
         <div className="mt-12 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-          <div className="clip-corner relative aspect-[4/3] overflow-hidden ring-1 ring-gold-primary/25">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={item.image}
-                className="absolute inset-0"
-                initial={reduce ? false : { opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.02 }}
-                transition={{ duration: 0.5, ease: EASE }}
+          <div>
+            <div className="clip-corner relative aspect-[4/3] overflow-hidden ring-1 ring-gold-primary/25">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeImage.src}
+                  className="absolute inset-0"
+                  initial={reduce ? false : { opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.02 }}
+                  transition={{ duration: 0.5, ease: EASE }}
+                >
+                  <Image
+                    src={activeImage.src}
+                    alt={activeImage.alt}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
+              <span className="pointer-events-none absolute left-4 top-4 z-10 h-6 w-6 border-l-2 border-t-2 border-gold-primary" />
+            </div>
+
+            {item.images.length > 1 ? (
+              <div
+                className="mt-4 flex items-center gap-2"
+                role="tablist"
+                aria-label="Vista del contenedor"
               >
-                <Image
-                  src={item.image}
-                  alt={item.alt}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </motion.div>
-            </AnimatePresence>
-            <span className="pointer-events-none absolute left-4 top-4 z-10 h-6 w-6 border-l-2 border-t-2 border-gold-primary" />
+                {item.images.map((img, i) => (
+                  <button
+                    key={img.src}
+                    type="button"
+                    role="tab"
+                    aria-selected={i === imageIndex}
+                    onClick={() => setImageIndex(i)}
+                    className={`px-4 py-2 text-[0.75rem] font-semibold uppercase tracking-wide transition-colors ${
+                      i === imageIndex
+                        ? "bg-gold-primary text-dark-base"
+                        : "border border-border-line text-slate-300 hover:border-gold-primary/60 hover:text-white"
+                    }`}
+                  >
+                    {img.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <div>
@@ -117,7 +151,7 @@ export default function Projects() {
             </AnimatePresence>
 
             <div className="mt-8">
-              <Button href={navCta.href} variant="primary" size="md" withArrow>
+              <Button href={navCta.href} variant="primary" size="lg" withArrow>
                 {showcaseSection.cta}
               </Button>
             </div>

@@ -16,6 +16,7 @@ import {
   Instagram,
   Facebook,
   Linkedin,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 import type { IconName } from "@/data/content";
@@ -38,6 +39,7 @@ const registry: Record<IconName, LucideIcon> = {
   instagram: Instagram,
   facebook: Facebook,
   linkedin: Linkedin,
+  users: Users,
 };
 
 type IconProps = {
