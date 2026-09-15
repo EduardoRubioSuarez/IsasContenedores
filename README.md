@@ -115,9 +115,9 @@ Para incrustar un mapa real, reemplaza ese bloque por un `<iframe>` de Google Ma
 
 | Token          | Hex       | Uso                                  |
 | -------------- | --------- | ------------------------------------ |
-| `gold-primary` | `#C49846` | Acentos, líneas, botones de acción   |
-| `gold-light`   | `#D6AB57` | Hover / acento sobre fondo oscuro    |
-| `gold-dark`    | `#9A7228` | Acento sobre fondo claro             |
+| `gold-primary` | `#FFB230` | Acentos, líneas, botones de acción   |
+| `gold-light`   | `#FFC159` | Hover / acento sobre fondo oscuro    |
+| `gold-dark`    | `#B37D22` | Acento sobre fondo claro             |
 | `dark-base`    | `#111419` | Fondo grafito, texto principal       |
 | `dark-surface` | `#1A1F26` | Sección oscura de contraste          |
 | `slate-muted`  | `#64748B` | Textos secundarios                   |

@@ -39,7 +39,7 @@ type Props = {
  * Contenedor marítimo dibujado en perspectiva de un punto, como el
  * isotipo. Las líneas se trazan de forma escalonada al entrar en viewport.
  */
-export default function BlueprintContainer({ className = "", stroke = "#C49846" }: Props) {
+export default function BlueprintContainer({ className = "", stroke = "#FFB230" }: Props) {
   const reduceMotion = useReducedMotion();
   const ref = useRef<SVGSVGElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });

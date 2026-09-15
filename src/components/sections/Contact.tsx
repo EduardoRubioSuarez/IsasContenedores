@@ -22,7 +22,7 @@ const details: ContactDetail[] = [
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    value: "Respuesta en horario de oficina",
+    value: "Atención inmediata, todos los días",
     href: whatsappUrl,
     external: true,
   },

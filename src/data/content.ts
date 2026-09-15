@@ -88,10 +88,7 @@ export const site = {
   mapEmbedSrc:
     "https://www.google.com/maps?q=24.12674,-110.319677&z=16&hl=es&output=embed",
 
-  hours: [
-    { days: "Lunes a viernes", time: "9:00 a 18:00" },
-    { days: "Sábado y domingo", time: "Cerrado" },
-  ],
+  hours: [{ days: "Todos los días", time: "Atención las 24 horas" }],
 
   // TODO: redes reales. Deja la lista vacía hasta tener los perfiles; así no se
   // enlazan páginas genéricas ni en el footer ni en los datos estructurados.
@@ -166,7 +163,7 @@ export const hero = {
   secondaryCta: { label: "Cotizar por WhatsApp", href: whatsappUrl },
   image: {
     src: "/proyectos/hero.webp",
-    alt: "Vivienda de dos contenedores marítimos apilados con ventanales de piso a techo, terraza de madera y vista al mar al atardecer",
+    alt: "Vivienda de contenedores marítimos de dos niveles con paneles solares, terraza superior, ventanales de piso a techo y jardín de cactus al atardecer con montañas de fondo",
   },
 };
 

@@ -5,9 +5,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "gold-primary": "#C49846",
-        "gold-light": "#D6AB57",
-        "gold-dark": "#9A7228",
+        "gold-primary": "#FFB230",
+        "gold-light": "#FFC159",
+        "gold-dark": "#B37D22",
         "dark-base": "#111419",
         "dark-surface": "#1A1F26",
         "slate-muted": "#64748B",
