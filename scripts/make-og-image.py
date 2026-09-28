@@ -6,7 +6,7 @@ Uso (desde la raíz del proyecto):
     pip install pillow
     python scripts/make-og-image.py
 
-Vuelve a correrlo si cambia la foto base (public/proyectos/hero.webp),
+Vuelve a correrlo si cambia la foto base (public/proyectos/hero-v2.webp),
 el logotipo o el texto de abajo.
 """
 from PIL import Image, ImageDraw, ImageFont
@@ -17,7 +17,7 @@ GOLD = (196, 152, 70)        # gold-primary del sitio
 MARGIN = 64
 BOTTOM = 58
 
-PHOTO = "public/proyectos/hero.webp"
+PHOTO = "public/proyectos/hero-v2.webp"
 LOGO = "public/isas-contenedores-logo.webp"
 OUT = "public/og-image.jpg"
 TAGLINE = "Casas y oficinas en contenedores marítimos  ·  Baja California"

@@ -40,10 +40,10 @@ export const site = {
   // que se generan al compartir en redes.
   url: "https://isascontenedores.mx",
   logo: {
-    src: "/isas-contenedores-logo.webp",
+    src: "/isas-contenedores-logo-v2.webp",
     alt: "Isas Contenedores",
-    width: 819,
-    height: 350,
+    width: 1286,
+    height: 526,
   },
   description:
     "Venta, habilitación y transformación arquitectónica de contenedores marítimos: viviendas de diseño, oficinas ejecutivas, módulos comerciales y bodegas industriales.",
@@ -162,7 +162,7 @@ export const hero = {
   primaryCta: { label: "Ver Proyectos", href: "#proyectos" },
   secondaryCta: { label: "Cotizar por WhatsApp", href: whatsappUrl },
   image: {
-    src: "/proyectos/hero.webp",
+    src: "/proyectos/hero-v2.webp",
     alt: "Vivienda de contenedores marítimos de dos niveles con paneles solares, terraza superior, ventanales de piso a techo y jardín de cactus al atardecer con montañas de fondo",
   },
 };

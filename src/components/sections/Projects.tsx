@@ -56,7 +56,7 @@ export default function Projects() {
                 onClick={() => selectTab(i)}
                 className={`flex w-full items-center justify-center gap-2 px-4 py-2.5 text-[0.78rem] font-semibold uppercase tracking-wide transition-colors sm:w-auto sm:justify-start ${
                   sel
-                    ? "bg-gold-primary text-dark-base"
+                    ? "bg-gold-primary text-dark-base hover:bg-orange-hover"
                     : "border border-border-line bg-dark-base text-slate-300 hover:border-gold-primary/60 hover:text-white"
                 }`}
               >
@@ -107,7 +107,7 @@ export default function Projects() {
                     onClick={() => setImageIndex(i)}
                     className={`px-4 py-2 text-[0.75rem] font-semibold uppercase tracking-wide transition-colors ${
                       i === imageIndex
-                        ? "bg-gold-primary text-dark-base"
+                        ? "bg-gold-primary text-dark-base hover:bg-orange-hover"
                         : "border border-border-line text-slate-300 hover:border-gold-primary/60 hover:text-white"
                     }`}
                   >
